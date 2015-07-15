@@ -50,12 +50,12 @@ static int init_display(struct fbtft_par *par)
 	mdelay(5);
 	write_reg(par, 0x28); /* display off */
 	/* --------------------------------------------------------- */
-	write_reg(par, 0xCF, 0x00, 0x83, 0x30);
-	write_reg(par, 0xED, 0x64, 0x03, 0x12, 0x81);
-	write_reg(par, 0xE8, 0x85, 0x01, 0x79);
+	write_reg(par, 0xCF, 0x00, 0x83, 0x30); /* power control */
+	write_reg(par, 0xED, 0x64, 0x03, 0x12, 0x81); /* power on sequence control */
+	write_reg(par, 0xE8, 0x85, 0x01, 0x79); /* driver timing control */
 	write_reg(par, 0xCB, 0x39, 0X2C, 0x00, 0x34, 0x02);
-	write_reg(par, 0xF7, 0x20);
-	write_reg(par, 0xEA, 0x00, 0x00);
+	write_reg(par, 0xF7, 0x20); 			/* pump ratio control */
+	write_reg(par, 0xEA, 0x00, 0x00); /* driver timing control */
 	/* ------------power control-------------------------------- */
 	write_reg(par, 0xC0, 0x26);
 	write_reg(par, 0xC1, 0x11);
@@ -63,9 +63,9 @@ static int init_display(struct fbtft_par *par)
 	write_reg(par, 0xC5, 0x35, 0x3E);
 	write_reg(par, 0xC7, 0xBE);
 	/* ------------memory access control------------------------ */
-	write_reg(par, 0x3A, 0x55); /* 16bit pixel */
+	write_reg(par, 0x3A, 0x55);  			/* 16bit pixel */
 	/* ------------frame rate----------------------------------- */
-	write_reg(par, 0xB1, 0x00, 0x1B);
+	write_reg(par, 0xB1, 0x00, 0x1B); /* default 70Hz framerate */
 	/* ------------Gamma---------------------------------------- */
 	/* write_reg(par, 0xF2, 0x08); */ /* Gamma Function Disable */
 	write_reg(par, 0x26, 0x01);
